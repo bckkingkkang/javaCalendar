@@ -37,6 +37,7 @@ public class Calendar {
 			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getmaxDaysOfMonth(month));
 		}
 		
+		System.out.println("반복이 종료되었습니다.");
 		
 		scanner.close();
 
