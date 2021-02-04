@@ -30,17 +30,13 @@ public class Calendar {
 		int repeat = scanner.nextInt();
 		Calendar cal = new Calendar();
 
-		
 		for( int i = 1; i <= repeat; i ++ ) {
 			System.out.println("달을 입력하세요.");
 			int month = scanner.nextInt();
-			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getmaxDaysOfMonth(month));
+			System.out.printf("%d월은 %d일까지 있습니다.\n", i, cal.getmaxDaysOfMonth(i));
 		}
 		
-		System.out.println("반복이 종료되었습니다.");
-		
 		scanner.close();
-
+		System.out.println("반복이 종료되었습니다.");
 	}
-
 }
