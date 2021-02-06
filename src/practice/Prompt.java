@@ -12,10 +12,14 @@ public class Prompt {
 		Calendar cal = new Calendar();
 	
 		int month = 1;
+		int year = 1;
 		
 		while (true) {
+			System.out.println("연도를 입력하세요: ");
+			System.out.print("YEAR> ");
+			year = scanner.nextInt();
 			System.out.println("달을 입력하세요: ");
-			System.out.print(PROMPT);
+			System.out.print("MONTH> ");
 			
 			month = scanner.nextInt();
 			if (month == -1) {
@@ -24,8 +28,7 @@ public class Prompt {
 			if (month > 12 ) {
 				continue;
 			}
-			System.out.printf("%d월은 %d일까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
-			
+			cal.printCalendar(year, month);
 		}
 		System.out.println("\n프로그램이 종료됩니다.");
 		scanner.close();
