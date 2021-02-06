@@ -20,17 +20,36 @@ public class Calendar {
 		}
 	}
 	
-	public void printCalendar(int year, int month) {
+	public void printCalendar(int year, int month, int weekday) {
 		System.out.printf("   <<%4d년%3d월>>\n", year, month);
 		System.out.println(" 일  월  화  수  목 금  토");
 		System.out.println("---------------------");
 	
-		
+		// print blank space
+		for ( int i = 0; i < weekday; i++) {
+			System.out.print("   ");
+		}
 		int maxDay = getMaxDaysOfMonth( year, month);
 		
-		for(int i = 1; i <= maxDay; i++ ) {
+		int count = 7 - weekday; 
+		int delim = (count < 7) ? count : 0;
+/*		//if (count < 7 ) {
+			delim = count;
+		} else {
+			delim = 0;
+		}
+		delimiter : 텍스트의 개시, 종료를 표시하는 것
+*/		
+		for ( int i = 1; i <= count; i++) {
 			System.out.printf("%3d", i);
-			if(i % 7 == 0) {
+		}
+		System.out.println();
+		
+		count++;
+		// print from second line to last
+		for(int i = count; i <= maxDay; i++ ) {
+			System.out.printf("%3d", i);
+			if( i % 7 == delim ) {
 				System.out.println();
 			}
 		}
