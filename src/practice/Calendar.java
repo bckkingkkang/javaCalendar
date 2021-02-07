@@ -49,6 +49,7 @@ public class Calendar {
 		System.out.println();
 		
 		count++;
+		
 		// print from second line to last
 		for(int i = count; i <= maxDay; i++ ) {
 			System.out.printf("%3d", i);
@@ -82,7 +83,6 @@ public class Calendar {
 		
 		return weekday;
 	}
-	
 	// simple test code here
 	public static void main(String[] args) {
 		Calendar c = new Calendar();

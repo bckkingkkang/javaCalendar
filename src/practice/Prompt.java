@@ -38,8 +38,6 @@ public class Prompt {
 				continue;
 			}
 			
-
-			
 			cal.printCalendar(year, month);
 			System.out.println();
 		}
