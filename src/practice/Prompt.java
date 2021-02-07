@@ -21,7 +21,6 @@ public class Prompt {
 	
 		int month = 1;
 		int year = 1;
-		int weekday = 1;
 		
 		while (true) {
 			System.out.println("연도를 입력하세요(exit: -1): ");
@@ -39,13 +38,9 @@ public class Prompt {
 				continue;
 			}
 			
-			System.out.println("1일에 해당하는 요일을 입력하세요: ");
-			System.out.print("WEEKDAY> ");
-			String str_weekday = scanner.next();
-			System.out.println();
-			weekday = parseDay(str_weekday);
+
 			
-			cal.printCalendar(year, month,weekday);
+			cal.printCalendar(year, month);
 			System.out.println();
 		}
 		System.out.println("\n프로그램이 종료됩니다.");
