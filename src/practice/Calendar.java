@@ -62,7 +62,7 @@ public class Calendar {
 
 	private int getWeekday(int year, int month, int day) {
 		int syear = 1970;
-		final int STANDARD_WEEKDAY = 3; // 목요일
+		final int STANDARD_WEEKDAY = 4; // 목요일
 		
 		int count = 0;
 		
@@ -77,7 +77,7 @@ public class Calendar {
 			count += delta;
 		}
 		
-		count += day;
+		count += day -1;
 		
 		int weekday = ( count + STANDARD_WEEKDAY ) % 7 ;
 		
