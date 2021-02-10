@@ -34,7 +34,7 @@ public class Prompt {
 			System.out.print("MONTH> ");
 			month = scanner.nextInt();
 			if (month > 12 || month < 1 ) {
-				System.out.println("잘못된 입력입니다.");
+				System.err.println("잘못된 입력입니다.");
 				continue;
 			}
 			
