@@ -1,10 +1,33 @@
 package practice;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+
 public class Calendar {
 
 	private static final int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+	private HashMap <Date, String> planMap;
+	
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
+	
+	public void registerPlan(String strDate, String plan) throws ParseException {
+		Date date = new SimpleDateFormat("YYYY-MM-DD").parse(strDate);
+		// System.out.println(date);
+		planMap.put(date, plan);
+	}
+	
+	public String searchPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("YYYY-MM-DD").parse(strDate);
+		String plan = planMap.get(date);
+		return plan;
+	}
+				
 	public boolean isLeapYear(int year) {
 		if( year % 4 == 0 && year % 100 != 0 || year % 400 == 0) 
 			return true;
@@ -84,11 +107,15 @@ public class Calendar {
 		return weekday;
 	}
 	// simple test code here
-	public static void main(String[] args) {
-		Calendar c = new Calendar();
-		c.getWeekday(1970, 1, 1);
-		c.getWeekday(1971, 5, 1);
-		c.getWeekday(1972, 5, 1);
-		c.getWeekday(1973, 5, 1);
+	public static void main(String[] args) throws ParseException{
+		Calendar cal = new Calendar();
+		System.out.println(cal.getWeekday(1970, 1, 1) == 4);
+		System.out.println(cal.getWeekday(1971, 1, 1) == 5);
+		System.out.println(cal.getWeekday(1972, 1, 1) == 6);
+		System.out.println(cal.getWeekday(1973, 1, 1) == 1);
+		System.out.println(cal.getWeekday(1974, 1, 1) == 2);
+		
+		cal.registerPlan("2021-02-10", "Study JAVA");
+		System.out.println(cal.searchPlan("2021-02-10").equals("Study JAVA"));
 	}
 }

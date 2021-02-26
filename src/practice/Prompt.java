@@ -2,6 +2,8 @@ package practice;
 
 import java.util.Scanner;
 
+import java.text.ParseException;
+
 public class Prompt {
 	
 	public void printMenu() {
@@ -22,9 +24,49 @@ public class Prompt {
 		else if (week.equals("금"))	return 5;
 		else if (week.equals("토"))	return 6;
 		else						return 0;
+	}		
+	private void cmdRegister(Scanner s, Calendar c) throws ParseException {
+		System.out.println("[ 새 일정 등록 (날짜를 입력해주세요 YYYY-MM-DD) ] : ");
+		String date = s.next();
+		String text = "";
+		s.nextLine();
+		System.out.println("일정을 입력해주세요 : ");
+		text = s.nextLine();
+		c.registerPlan(date, text);
 	}
-
-	public void runPrompt() {
+	
+	
+//	private void cmdRegister(Scanner s, Calendar c) throws ParseException {
+//        System.out.println("[새 일정 등록]");
+//        System.out.println("날짜를 입력해 주세요 (yyyy-MM-dd).");
+//        String date = s.next();
+//        String text = "";
+//        s.nextLine(); //ignore one newline
+//        System.out.println("일정을 입력해 주세요.");
+//        text = s.nextLine();
+//
+//        c.registerPlan(date, text);
+//    }
+	
+	
+	
+	private void cmdSearch(Scanner s, Calendar c) {
+		System.out.println("[ 일정 검색 (날짜를 입력해주세요 YYYY-MM-DD) ] : ");
+		String date = s.next();
+		String plan = "";
+		
+		try {
+			plan = c.searchPlan(date);
+			System.err.println("일정 검색 중 오류 발생");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+			
+		System.out.println(plan);
+	} 
+	
+	
+	public void runPrompt() throws ParseException {
 		
 		printMenu();
 		Scanner scanner = new Scanner(System.in);
@@ -36,9 +78,9 @@ public class Prompt {
 			
 			String cmd = scanner.next();
 			if ( cmd.equals("1") ) 
-				cmdRegister();
+				cmdRegister(scanner, cal);
 			else if ( cmd.equals("2") ) 
-				cmdSearch();
+				cmdSearch(scanner, cal);
 			else if ( cmd.equals("3") )
 				cmdCal(scanner, cal);
 			else if ( cmd.equals("h") )
@@ -50,26 +92,21 @@ public class Prompt {
 		scanner.close();	
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		// 셀 실행
 		Prompt p = new Prompt();
 		p.runPrompt();
-	}
-	
-	private void cmdRegister() {}
-	
-	private void cmdSearch() {} 
-	
-	private void cmdCal(Scanner s, Calendar c) {
 		
+	}
+	private void cmdCal(Scanner s, Calendar c) {
 		int month = 1;
 		int year = 1;
-		
+
 		System.out.println("연도를 입력하세요.");
 		System.out.print("YEAR> ");
 		year = s.nextInt();
-		
-		
+
+
 		System.out.println("달을 입력하세요: ");
 		System.out.print("MONTH> ");
 		month = s.nextInt();
@@ -77,7 +114,7 @@ public class Prompt {
 			System.err.println("잘못된 입력입니다.");
 			return;
 		}
-		
+
 		c.printCalendar(year, month);
 		System.out.println();
 	}
